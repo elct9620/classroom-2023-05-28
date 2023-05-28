@@ -13,19 +13,19 @@ class Movie
       )
     end
 
-    def recent
+    def recent(amount)
       items
         .select { |movie| Time.zone.now >= movie.date }
         .sort_by(&:date)
         .reverse
-        .take(1)
+        .take(amount)
     end
 
-    def latest
+    def latest(amount)
       items
         .sort_by(&:date)
         .reverse
-        .take(1)
+        .take(amount)
     end
 
     def clear

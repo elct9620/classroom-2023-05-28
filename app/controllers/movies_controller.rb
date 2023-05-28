@@ -2,9 +2,13 @@
 
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    type, amount = params[:search]&.split
 
-    @movies = Movie.recent if params[:search] == '最近 1'
-    @movies = Movie.latest if params[:search] == '最新 1'
+    @movies = case type
+              when '最近' then Movie.recent(amount.to_i)
+              when '最新' then Movie.latest(amount.to_i)
+              else
+                Movie.all
+              end
   end
 end
