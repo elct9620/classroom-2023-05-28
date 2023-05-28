@@ -7,3 +7,7 @@ end
 After do |_scenario|
   DatabaseRewinder.clean
 end
+
+After do
+  Movie.clear
+end

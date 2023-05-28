@@ -28,6 +28,10 @@ class Movie
         .take(1)
     end
 
+    def clear
+      @items = []
+    end
+
     alias all items
   end
 
