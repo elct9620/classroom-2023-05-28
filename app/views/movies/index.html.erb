@@ -1,3 +1,11 @@
-<p>1. SANKYO PRESENTS WALKURE FINAL LIVE TOUR 現場直播</p>
-<p>2. 小美人魚</p>
-<p>3. 玩命關頭X</p>
+<%= form_with(url: movies_path, method: :get) do |f| %>
+  <%= f.label :search %>
+  <%= f.text_field :search %>
+  <%= f.submit '查詢' %>
+<% end %>
+
+<div>
+  <% @movies.each_with_index do |movie, idx| %>
+    <p><%= idx + 1 %>. <%= movie %></p>
+  <% end %>
+</div>
