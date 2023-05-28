@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-Given('這裡有幾部電影') do |table|
-  table.hashes.each do |movie|
-    Movie.create!(**movie)
-  end
+Given('電影資料來自 {string}') do |source|
+  Movie.source = source
 end
 
 When('開啟電影列表') do

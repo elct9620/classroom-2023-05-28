@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 class Movie
   RECENT = :recent
   LATEST = :latest
 
   class << self
     def items
-      @items ||= []
+      Nokogiri::HTML(raw)
+              .css('.movieList li')
+              .map do |el|
+        new(
+          name: el.css('h2').text,
+          date: el.css('time').text
+        )
+      end
     end
 
-    def create!(**attributes)
-      items << new(
-        name: attributes['name'],
-        date: attributes['date']
-      )
+    def raw
+      return Net::HTTP.get(URI(source)) if source.start_with?('http')
+
+      Rails.root.join(source).read
     end
 
     def recent(amount)
@@ -31,15 +39,13 @@ class Movie
         .take(amount)
     end
 
-    def clear
-      @items = []
-    end
-
     alias all items
   end
 
   include ActiveModel::Model
   include ActiveModel::Attributes
+
+  class_attribute :source, default: 'https://www.vscinemas.com.tw/vsweb/film/index.aspx'
 
   attribute :name
   attribute :date, :date
