@@ -6,6 +6,6 @@
 
 <div>
   <% @movies.each_with_index do |movie, idx| %>
-    <p><%= idx + 1 %>. <%= movie %></p>
+    <p><%= idx + 1 %>. <%= movie.name %></p>
   <% end %>
 </div>
