@@ -13,6 +13,21 @@ class Movie
       )
     end
 
+    def recent
+      items
+        .select { |movie| Time.zone.now >= movie.date }
+        .sort_by(&:date)
+        .reverse
+        .take(1)
+    end
+
+    def latest
+      items
+        .sort_by(&:date)
+        .reverse
+        .take(1)
+    end
+
     alias all items
   end
 
