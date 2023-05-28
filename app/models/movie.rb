@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Movie
+  RECENT = :recent
+  LATEST = :latest
+
   class << self
     def items
       @items ||= []

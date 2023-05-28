@@ -2,11 +2,11 @@
 
 class MoviesController < ApplicationController
   def index
-    type, amount = params[:search]&.split
+    input = MovieSearchForm.new(params[:search])
 
-    @movies = case type
-              when '最近' then Movie.recent(amount.to_i)
-              when '最新' then Movie.latest(amount.to_i)
+    @movies = case input.type
+              when Movie::RECENT then Movie.recent(input.amount)
+              when Movie::LATEST then Movie.latest(input.amount)
               else
                 Movie.all
               end
