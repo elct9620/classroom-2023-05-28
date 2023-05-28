@@ -2,7 +2,7 @@
 
 Given('這裡有幾部電影') do |table|
   table.hashes.each do |movie|
-    # ...
+    Movie.create!(**movie)
   end
 end
 
