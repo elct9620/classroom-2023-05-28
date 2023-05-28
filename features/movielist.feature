@@ -35,6 +35,8 @@
       | date       | name               |
       | 2023-06-07 | 變形金剛：萬獸崛起 |
     當 開啟電影列表
+    並且 在 "Search" 填入 "最新 3"
+    並且 點選 "查詢"
     那麼 會看到 "1. 變形金剛：萬獸崛起"
-    那麼 會看到 "2. SANKYO PRESENTS WALKURE FINAL LIVE TOUR 現場直播"
+    並且 會看到 "2. SANKYO PRESENTS WALKURE FINAL LIVE TOUR 現場直播"
     並且 會看到 "3. 小美人魚"
